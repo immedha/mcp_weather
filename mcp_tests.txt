@@ -1,0 +1,142 @@
+These are some tests demonstrating tool integration and comparing its results to without tool integration. Each test
+simply has a "USER" and "OUTPUT".
+There are 2 main categories to compare: Regular LLM queries without tool integration ("general"), and queries with the MCP tool integration ("tool-calls").
+Within these categories, there are more categories each. See the tests and results below.
+
+///------------- General Calls -------------///
+///------------- Category 1. Not asking about weather -------------///
+
+USER: What is 1+1? 
+OUTPUT: One plus one is two.
+
+USER: Explain what the word entropy means.
+OUTPUT: Entropy is a fundamental concept in physics and science that refers to the 
+measure of disorder or randomness in a system. It's a way to describe how 
+much energy is wasted or dissipated as heat, light, or other forms of 
+energy.
+
+In simple terms, entropy can be thought of as a scale that measures how 
+organized or disorganized something is. When you have fewer particles or 
+substances in a particular location, it means they're less likely to 
+interact with each other and are more dispersed. This represents lower 
+entropy.
+
+Conversely, when you have more particles or substances in a given area, 
+the energy has become more dispersed and random, representing higher 
+entropy. Think of it like a deck of cards: when all the cards are together 
+in one pile, they're ordered and organized (low entropy). As the cards are 
+shuffled and spread out, they become more random and disorganized (high 
+entropy).
+
+Entropy is often used to describe systems that undergo a change from order 
+to disorder, such as:
+
+* Melting ice: From a solid state to a liquid state.
+* Boiling water: From a liquid state to a gas state.
+* Decomposition of chemicals: When substances break down into simpler 
+forms.
+
+In everyday life, entropy can be observed in various phenomena, like:
+
+* Heat transfer: Energy is transferred from one location to another due to 
+temperature differences.
+* Mechanical systems: In mechanical devices, energy can become less 
+organized and more random as they work or operate.
+
+The second law of thermodynamics states that the total entropy of an 
+isolated system will always increase over time. This means that things 
+tend to become more disorganized and less efficient as the universe 
+expands and becomes more chaotic.
+
+///------------- Category 2. Asking about stuff related to tools (weather alerts, weather forecast) -------------///
+
+USER: What is the current weather in Seattle, WA?
+OUTPUT: I'm not able to provide real-time weather information or specific 
+conditions for a particular location. However, I can suggest some options 
+to help you find the current weather in Seattle, WA:
+
+1. Check online weather websites: You can visit websites like 
+accuweather.com, weather.com, or wunderground.com to get the latest 
+weather conditions and forecasts for Seattle.
+2. Use a virtual assistant: If you have a virtual assistant like Siri, 
+Google Assistant, or Alexa, you can ask them to provide you with the 
+current weather in Seattle.
+3. Tune into local news: You can watch local news channels or listen to 
+local radio stations to get updates on the current weather conditions in 
+Seattle.
+
+If you're looking for historical weather data or specific weather 
+conditions, I can try to help you with that. What would you like to know 
+about the weather in Seattle?
+
+///------------- Tool Calls -------------///
+///------------- Category 3. Asking about stuff not related to tools. -------------///
+
+USER: Explain what the word entropy means.
+OUTPUT: The word "entropy" refers to a measure of disorder or randomness in a system. It is often used to describe the decrease in organized or structured matter as it becomes more dispersed and random over time. In various fields, including physics, chemistry, and biology, entropy is a fundamental concept that helps explain how systems tend to become less organized and more disordered.
+
+USER: What is 1+1?
+OUTPUT: 1 + 1 = 2
+
+USER: What does "weather forecast" mean?
+OUTPUT: The "weather forecast" refers to the predicted conditions of the weather for a specific geographic area, such as a city, state, or even a single day.
+
+
+USER: What are the different seasons?
+OUTPUT: The different seasons are:
+
+1. Spring
+2. Summer
+3. Autumn (or Fall)
+4. Winter
+
+///------------- Category 4. Asking about stuff related to tools -------------///
+///------------- Category 4A. the queries are specific and use specific wording of the tools -------------///
+
+USER: What is the current weather in Seattle, WA?
+OUTPUT: I can try to provide general information about the climate of Seattle, WA. 
+Seattle has a mild oceanic climate, with temperatures generally ranging from the mid-30s to mid-50s Fahrenheit (-1°C to 13°C) throughout the year. The city experiences significant rainfall throughout the year, with an average annual rainfall of around 37 inches (94 cm). Winters are usually cool and wet, while summers are mild and partly cloudy.
+
+USER: Are there any weather alerts for washington?
+OUTPUT: There is a Winter Weather Advisory for Northern Blue Mountains of Oregon, Northwest Blue Mountains, and South Washington Cascades. The advisory is in effect due to expected snow accumulations ranging from 5-8 inches above 4500 feet with gusty winds up to 45 mph.
+
+USER: Are there any weather alerts for the United States right now?
+OUTPUT: Yes. Here's a summary of advisories in California:
+
+- **Frost Advisory**: Temperatures as low as 29°F will cause frost formation in Lake County and Mendocino Interior. Avoid sensitive outdoor plants, cover or tend to them with cold blankets.
+- **Wind Advisory**: Strong winds (25-60 mph) with gusts up to 90 mph can lead to power outages and damage trees, especially on windward ridges. Use extra caution while driving and secure outdoor objects.
+- **High Wind Warning**: Southwesterly winds (25-35 mph) with gusts up to 70 mph will cause widespread damage, including downed tree branches and sporadic power outages.
+- **Winter Weather Advisory**: Snowfall of up to 12 inches is expected in high remote terrain, and strong winds of up to 45 mph can make driving difficult. Slow down and use caution while traveling.
+- **Lake Wind Advisory**: Southwest winds (15-20 mph) with gusts up to 40 mph will cause small boats to capsize, and rip currents to form near shore. Remain out of the water or stay near lifeguard towers.
+- **Winter Weather Advisory**: Snowfall of up to 3 inches is expected in elevations above 5,000 feet, causing travel difficulties. Slow down and use caution while traveling.
+
+///------------- Category 4B. being generic and the LLM would have to do work to figure out tool calls -------------///
+USER: Is it rainy?
+OUTPUT: It is currently not raining in the area you're in, California.
+
+USER: Do I need to wear a jacket right now if I live in California?
+OUTPUT: Based on the information provided, it seems that you do need to take precautions against cold temperatures and potential wind gusts if you live in California. However, you may not need to wear a jacket immediately.
+The Frost Advisory is currently in effect for several areas, including Northwestern Mendocino Interior; Northeastern Mendocino Interior; Southwestern Mendocino Interior; Southeastern Mendocino Interior; Northern Lake County; Southern Lake County; North Bay Interior Mountains; and North Bay Interior Valleys. Temperatures as low as 29°F are expected to result in frost formation.
+Since it's only midnight tonight, you may not need to take immediate action to protect tender plants from the cold. However, if you're planning to spend time outdoors or have sensitive plants that may be damaged by frost, consider taking precautions such as covering them with a sheet or tarp, and avoiding exposure to wind and rain.
+You can check the latest forecast and road conditions before heading out to ensure your safety while driving. Additionally, be aware of potential falling debris and tree limbs in high-profile vehicles if you must drive.
+
+///------------- Category 4C. Making queries requiring multiple tool calls -------------///
+
+USER: Explain the differences between weathers in different states of the US, and why there are differences.  
+OUTPUT: The US states and regions have different weather patterns due to their unique geography, climate, and atmospheric conditions. Here's a brief overview of some of the key differences:
+
+1. **Temperature**: The northernmost and southernmost parts of the country experience colder temperatures. For example, Lake County in California and Mendocino Interior in California tend to be cooler than the coastal areas.
+2. **Frost advisories**: Areas with colder temperatures, like Lake County and Mendocino Interior, are more likely to experience frost advisories due to overnight temperature drops below 32°F (0°C).
+3. **Wind**: Wind patterns vary significantly across different regions. For instance, the coastal areas of California tend to experience stronger winds than inland areas.
+4. **Snowfall**: Areas in mountainous regions like the Rocky Mountains and Sierra Nevada receive significant snowfall, while lower elevations tend to be drier and warmer.
+5. **Hurricane season**: The southern states have a longer hurricane season due to their proximity to the tropics, whereas the northern states have a shorter season.
+
+These regional differences are influenced by factors such as ocean currents, atmospheric circulation patterns, and topography. Understanding these variations can help you prepare for weather events and plan accordingly.
+
+USER: How does the weather in Washington and Virginia compare?
+OUTPUT: Washington and Virginia have different weather patterns, with Washington being located in the Pacific Northwest region, which tends to be milder and wetter than Virginia's humid subtropical climate.
+
+In terms of flooding, both states experience some flood events, but the severity and frequency vary:
+* In Washington, the Nottoway River at Sebrell is experiencing minor flooding from this afternoon to early Friday afternoon due to a predicted river stage of 16.0 feet.
+* In Virginia, several rivers are experiencing severe flooding, including the Nottoway River at Sebrell in Sussex County and the Blackwater River near Dendron in Surry County.
+Overall, while both states experience some flood events, Washington's climate tends to be more prone to rain and flooding than Virginia's, which is often associated with drought and heatwaves.
